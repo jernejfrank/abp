@@ -5,7 +5,9 @@ description = "Abstract Base Pipeline"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "sf-hamilton[visualize]>=1.83.1",
+    "notebook>=7.2.2",
+    "plotly>=5.24.1",
+    "sf-hamilton[visualization]>=1.83.1",
 ]
 
 [build-system]
@@ -19,4 +21,90 @@ dev-dependencies = [
     "pytest>=8.3.3",
     "pytest-cov>=6.0.0",
     "ruff>=0.7.4",
+]
+
+[tool.pyright]
+include = [
+    "abp"
+  ]
+
+venvPath = "."
+venv = ".venv"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+fix = true
+
+[tool.ruff.lint]
+select = [
+  "A",  # flake8-builtins
+  "ANN",  # flake8-annotations
+  "B",  # flake8-bugbear
+  "BLE",  # flake8-blind-except
+  "C4", # flake8-comprehensions
+  "C",  # mccabe
+  "D",  # flake8-docstrings
+  "E", "F",  # flake8
+  "FA",  # Verifies files use from __future__ import annotations if a type is used in the module that can be rewritten using PEP 563.
+  "FURB", # Refurbishing and modernizing Python codebases
+  "G",  # flake8-logging-format
+  "I",  # isort
+  "ISC",  # flake8-implicit-str-concat
+  "LOG", # Checks for issues using the standard library logging module.
+  "N",  # pep8-naming
+  "NPY", # Linting rules for numpy
+  "PERF",# Linting rules for performance
+  "PGH", # pygrep-hooks
+  "Q",   # Linting rules for quites
+  "RUF",  # Ruff-specific rules
+  "S",  # flake8-bandit
+  "SIM",  # flake8-simplify
+  "T10", # flake8-debugger
+  "T20", # Check for Print statements in python files.
+  "TCH", # Move type-only imports to a type-checking block.
+  "TID", # Helps you write tidier imports.
+  "TRY", # tryceratops
+  "UP", # pyupgrade
+  "W",   # pycodestyle warnings
+  "YTT", # flake8-2020,
+]
+
+ignore = [
+    "ANN101",
+    "ANN401",
+    "E731",
+    "F403",
+    "N802",
+    "N803",
+    "PGH003",
+    "PGH004",
+    "TRY003",
+]
+
+unfixable = [
+  "ERA",  # Don't remove commented-out code
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+preview = true
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+]
+"__init__.py" = [
+    "F401",
+    "D104"
 ]
