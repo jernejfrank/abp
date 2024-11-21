@@ -1,0 +1,22 @@
+[project]
+name = "abp"
+version = "0.1.0"
+description = "Abstract Base Pipeline"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "sf-hamilton[visualize]>=1.83.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pre-commit>=4.0.1",
+    "pyright[nodejs]>=1.1.389",
+    "pytest>=8.3.3",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.7.4",
+]
